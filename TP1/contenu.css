@@ -1,15 +1,56 @@
-.conteneur-flexible{
+.conteneur{
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-around;
     align-content: space-around;
-    background-color: #0AD; /*Bleu*/
+    height: fit-content;
     width: 100%;
-    height: 200px;
-    border: 2px solid blue;
     box-sizing: border-box;
     margin: 20px 0px;
+}
+
+body{
+    background: #4174e2;
+}
+
+nav{
+    display: inline-block;
+    width: 200px;
+}
+
+nav li {
+    margin-top: 10px;
+    background-color: #0AD; /*Bleu*/
+    padding: 15px;
+}
+
+
+section{
+    display: flex; 
+    flex-flow: row wrap;
+    justify-content: left;
+    flex-direction: row;
+    width: 100%;
+    padding-bottom: 20px;
+    margin: 20px auto;
+    box-shadow: 0px 0px 10px #bbb;
+    background-color: rgb(255, 255, 255);
+}
+
+header, footer{
+    display: flex;
+    width: 100%;
+    padding: 20px 0px;
+    justify-content: center;
+    background-color: #777;
+    box-shadow: 0px 0px 15px rgb(214, 117, 117);
+}
+
+.he{
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
 }
 .ligne{
     flex-direction: row; /*Axe principal = axe horizontal*/
@@ -20,10 +61,9 @@
 
 .element-flexible{
     flex: 1 1 50px;
-    width: 40%;
-    height: 40%;
+    width: 20%;
+    height: fit-content;
     background-color: #0DA; /*Vert*/
-    border: 2px solid green;
     box-sizing: border-box;
     margin: 10px;
 }
