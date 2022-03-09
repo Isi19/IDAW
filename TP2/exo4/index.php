@@ -1,26 +1,42 @@
 <?php
-    require_once("header.php");
-    require_once("menu.php");
+    require_once("template_header.php");
     $currentPageId = 'accueil';
     if(isset($_GET['page'])) {
     $currentPageId = $_GET['page'];
     }
 ?>
-<header class="bandeau_haut">
-    <h1 class="titre">Hector Durand</h1>
-</header>
-<?php
-    renderMenuToHTML($currentPageId);
-?>
-<section class="corps">
+
+
+<header>
+    <h1>
     <?php
-    $pageToInclude = $currentPageId . ".php";
+    $pages = array(
+        'accueil' => array( 'Accueil', 'Site Personnel' ),
+        'cv' => array( 'Cv', 'CV d'."'".' Isidore' ),
+        'projets' => array('Mes Projets', 'Mes projets')
+        );
+echo $pages[$currentPageId][1];
+?>
+    </h1>
+</header>
+
+    <?php
+    require_once('template_menu.php');
+    renderMenuToHTML($currentPageId);
+    ?>
+
+
+    <?php
+    $pageToInclude = $currentPageId.".php";
     if(is_readable($pageToInclude))
     require_once($pageToInclude);
     else
     require_once("error.php");
     ?>
-</section>
+
 <?php
-    require_once("footer.php");
+    require_once("template_footer.php");
 ?>
+
+
+

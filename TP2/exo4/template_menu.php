@@ -6,9 +6,10 @@ function renderMenuToHTML($currentPageId) {
 
     $mymenu = array(
     // idPage titre
-    'index' => array( 'Accueil' ),
+    'accueil' => array( 'Accueil' ),
     'cv' => array( 'Cv' ),
-    'projets' => array('Mes Projets')
+    'projets' => array('Mes Projets'),
+    'contacts' => array('Contacts')
     );
 
 
@@ -17,9 +18,9 @@ function renderMenuToHTML($currentPageId) {
 
     foreach($mymenu as $pageId => $pageParameters) {
         if($pageId==$currentPageId)
-            $html.="<li><a id = currentPageId href=\"$pageId.php\">".$pageParameters[0]."</a>/li>";
+            $html.="<li><a id = currentPageId href=\"$pageId.php\">".$pageParameters[0]."</a></li>";
         else 
-            $html.= "<li><a href=\"$pageId.php\">".$pageParameters[0]."</a>/li>";
+            $html.= "<li><a href=\"$pageId.php\">".$pageParameters[0]."</a></li>";
     }
     echo $html;
     echo "</ul></nav>";

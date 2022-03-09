@@ -10,7 +10,7 @@
     margin: 20px 0px;
 }
 #currentPageId{
-    background:#777;
+    text-decoration: rgb(168, 11, 11);
 }
 
 body{
@@ -26,6 +26,10 @@ nav li {
     margin-top: 10px;
     background-color: #0AD; /*Bleu*/
     padding: 15px;
+}
+.blocmenu{
+    display: inline-block;
+    width: 200px;
 }
 
 

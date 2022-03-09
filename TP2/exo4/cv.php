@@ -2,16 +2,6 @@
 <?php
     require_once('template_header.php');
 ?>     
-    <header >
-        <h1>CV d'Isidore</h1>
-    </header>
-
-    <div class="blocmenu">   
-    <?php
-    require_once('template_menu.php');
-    renderMenuToHTML('cv');
-    ?>
-    </div>
 
     <div class="bloccontenu">  
         <section>
@@ -94,6 +84,4 @@
             </div>
         </section> 
     </div>
-<?php
-    require_once('template_footer.php');
-?> 
+
