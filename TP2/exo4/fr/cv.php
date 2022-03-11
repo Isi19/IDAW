@@ -6,11 +6,15 @@
     <div class="bloccontenu">  
         <section>
             <div class="prez">
+            <div class="photo">
+            <img src="photoisidore1.jpg" alt="Ma photo de profil">
+            </div>
                 <h2>Qui suis-je ?</h2>
                 <p>Etudiant en deuxième année d'école d'ingénieur 
                     à l'IMT.Je suis specialisé en data science et en développement web et mobile</p>
                 <a href="#" download>Télécharger mon CV</a>
             </div>
+
             <div class="contact">
                 <h2>Informations de contact</h2>
                 <div class="contact-flex">
@@ -27,7 +31,7 @@
                 </div>
                 <div class="contact-flex">
                     <p>Mail : </p>
-                    <p><a href="djamoineisidore@gmail.com">mailto:djamoineisidore@gmail.com</a></p>
+                    <p><a href="mailto:djamoineisidore@gmail.com">djamoineisidore@gmail.com</a></p>
                 </div>
                 <div class="contact-flex">
                     <p>Permis :</p>
@@ -83,5 +87,49 @@
                 </div>
             </div>
         </section> 
+
+        <section>
+        <h2>Compétences</h2>
+        <h3 class="h3gauche">Professionnelles</h3>
+        <div class="comp">
+            <p>HTML / CSS</p>
+            <div class="conteneur-barre"><span class="barre c100"></span></div>
+        </div>
+        <div class="comp">
+            <p>PHP / MySQL</p>
+            <div class="conteneur-barre"><span class="barre c95"></span></div>
+        </div>
+        <div class="comp">
+            <p>JavaScript</p>
+            <div class="conteneur-barre"><span class="barre c90"></span></div>
+        </div>
+        <div class="comp">
+            <p>SEO</p>
+            <div class="conteneur-barre"><span class="barre c100"></span></div>
+        </div>
+        <h3 class="h3gauche">Personnelles</h3>
+        <div class="comp2">
+            <p>Créativité</p>
+            <p>90%</p>
+            <div class="conteneur-barre2"><span class="barre c90"></span></div>
+        </div>
+        <div class="comp2">
+            <p>Adaptation</p>
+            <p>85%</p>
+            <div class="conteneur-barre2"><span class="barre c85"></span></div>
+        </div>
+        <div class="comp2">
+            <p>Sérieux</p>
+            <p>95%</p>
+            <div class="conteneur-barre2"><span class="barre c95"></span></div>
+        </div>
+        <div class="comp2">
+            <p>Pédagogie</p>
+            <p>95%</p>
+            <div class="conteneur-barre2"><span class="barre c95"></span></div>
+        </div>
+    </section>
+    
+
     </div>
 
