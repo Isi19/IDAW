@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset='utf-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+    <title>tabletest</title>
+    <style>
+    body{ margin-top: 5em; }
+    .table {
+        margin-top: 100px;
+        margin-bottom: 100px;
+    }
+    </style>
+</head>
+<body>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Nom</th>
+                <th scope="col">Prenom</th>
+                <th scope="col">Date de naissance</th>
+                <th scope="col">Aime le cours Web</th>
+                <th scope="col">Remarques</th>
+                <th scope="col">CRUD</th>
+            </tr>
+        </thead>
+        <tbody id="studentsTableBody">
+        </tbody>
+    </table>
+    <fieldset>
+    <form id="addStudentForm" action="" onsubmit="onFormSubmit();" method="POST"  >
+
+    <div class="form-group row">
+        <label for="inputNom" class="col-sm-2 col-form-label">Nom*</label>
+        <span style="color: red" id="nom"> <var></var></span>
+        <div class="col-sm-3">
+            <input type="text" class="form-control" id="inputNom" name="nom" ><br><br>
+            
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="inputprenom" class="col-sm-2 col-form-label">Prenom</label>
+        <div class="col-sm-3">
+            <input type="text" class="form-control" id="inputprenom" name="prenom" ><br><br>
+        </div>
+    </div>
+    <div class="form-group row"></div>
+        <label for="inputNaissance" class="col-sm-2 col-form-label">Date de Naissance <input type="date" id="inputNaissance" name="dateNaissance"/><br><br></label>
+    </div>
+    <div class="form-group row"></div>
+        <label for="inputadore" class="col-sm-2 col-form-label">Adore le cours <input type="checkbox" id="inputAdore" name="aimeCours"/><br><br></label>
+    </div>
+    <div class="form-group row">
+        <label for="inputRemarques" class="col-sm-2 col-form-label">Remarques 
+        <input type="text" class="form-control" id="inputRemarques" name="remarque" /><br><br>
+        </label>
+    </div>
+    <div class="form-group row">
+        <span class="col-sm-2"></span>
+        <div class="col-sm-2">
+            <button type="submit" class="btn btn-primary form-control" id="button"  >Submit</button>
+        </div>
+    </div>
+    </form>
+</fieldset>
+<script>
+
+
+
+let students = [
+    {
+        id: 1,
+        nom: "Nicolas",
+        prenom: "ni",
+        aimeCours: "oui",
+        dateNaissance:"12/07/1990",
+        remarques:"waii"
+    },
+    {
+        id: 2,
+        nom: "bernard",
+        prenom: "le",
+        aimeCours: "non",
+        dateNaissance:"12/07/1998",
+        remarques:"qkjhf"
+    }
+    ]
+
+    display();
+function onFormSubmit() {
+    // prevent the form to be sent to the server
+    event.preventDefault();
+    let nom = $("#inputNom").val();
+    let prenom = $("#inputprenom").val();
+    let naissance = $("#inputNaissance").val();
+    let output = $("input[id=inputAdore]:checked").val();
+    let check ="";
+    let Remarques = $("#inputRemarques").val();
+
+    if (output != undefined) {
+         check = "oui";
+    } else {
+        check = "non";
+    }
+
+    let student = {
+        nom: nom,
+        prenom: prenom,
+        aimeCours: check,
+        dateNaissance: naissance,
+        remarques: Remarques
+    };
+    
+    
+   if(nom.length!=0){
+       if(!edit){
+        //students.push(student);
+       $.post('addUser.php',
+       {
+        nom: nom,
+        prenom: prenom,
+        aimeCours: check,
+        dateNaissance: naissance,
+        remarques: Remarques
+        },
+        function (response) {
+         console.log(response);
+         display();
+      });
+       }
+
+    }
+    else
+        $("#nom").text("les champs avec une étoile doivent être renseignées");   
+    edit = false;
+}
+
+edit = false;
+editcourant = false;
+function editStudent(id) {
+
+
+    edit = false;
+    inde = null;
+
+    $.ajax({
+    type:"POST",
+    url: "edit.php",
+    data: { id: id },
+    dataType: 'json',
+    success: function(student){
+        document.getElementById("inputNom").value = student['nom'];
+        document.getElementById("inputprenom").value = student['prenom'];
+        $("#inputNaissance").val(student['datenaissance']);
+        document.getElementById("inputRemarques").value = student['remarques'];
+        if(student['aimecours']=="oui"){
+            document.getElementById("inputAdore").checked = "on";
+        }
+        else
+            document.getElementById("inputAdore").checked =undefined;
+    }
+    });
+
+    editcourant = true; 
+   
+        $("#addStudentForm").on("submit",function(){    
+        event.preventDefault;
+        let nom = $("#inputNom").val();
+        let prenom = $("#inputprenom").val();
+        let naissance = $("#inputNaissance").val();
+        let Remarques = $("#inputRemarques").val();
+        let output = $("input[id=inputAdore]:checked").val();
+        let check ="";
+        if (output != undefined) {
+            check = "oui";
+        } else {
+            check = "non";
+        }
+        if(nom.length!=0){
+            if(editcourant){ 
+                $.ajax({
+                    type:"POST",
+                    url: "addUser.php",
+                    data:  {
+                        id : id,
+                        nom: nom,
+                        prenom: prenom,
+                        aimeCours: check,
+                        dateNaissance: naissance,
+                        remarques: Remarques
+                        }, // get all form field value in 
+                    success: function(res){
+                    window.location.reload();
+                    display();
+                    }
+                });
+                editcourant = false;
+            }
+            
+        }
+        else
+            $("#nom").text("les champs avec une étoile doivent être renseignées");  
+        })
+    
+    edit = true; 
+}
+
+
+ 
+function supprimer( id) {
+    $.ajax({
+    type:"POST",
+    url: "deleteUser.php",
+    data: { id: id },
+    dataType: 'json',
+    success: function(res){
+    window.location.reload();
+    }
+});
+
+}
+
+function display(){
+    let stude;
+    $.get("testconnect.php",
+        function(response){
+            stude = JSON.parse(response)['utitilisateur'];
+            $("#studentsTableBody tr").remove();
+        stude.forEach(element =>
+       $("#studentsTableBody").append(`<tr><td>${element["nom"]}</td><td>${element["prenom"]}</td><td>${element["dateNaissance"]}</td><td>${element["aimeCours"]}</td><td>${element["remarques"]}</td><td><button onclick="editStudent(${element["id"]})">Edit</button></td><td><button onclick="supprimer(${element["id"]})">Delete</button></td></tr>`));
+        });
+}
+
+</script>
+</body>
+</html>
