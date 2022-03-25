@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset='utf-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <title>tabletest</title>
+    <style>
+    body{ margin-top: 5em; }
+    .table {
+        margin-top: 100px;
+        margin-bottom: 100px;
+    }
+    </style>
+</head>
+
+<body>
+    <p> Salut isidore</p>
+
+    <script type="module">
+        
+    //alphabet = FileAttachment("alphabet.csv").csv({typed: true})
+    let alphabet = await d3.csv("alphabet.csv");
+
+    console.log(alphabet);
+
+    
+        d3.selectAll("p").style("color", function() {
+        return "hsl(" + Math.random() * 360 + ",100%,50%)";
+    });
+
+
+
+
+
+    d3.select("body")
+  .selectAll("p")
+  .data(alphabet)
+  .join("p")
+    .text(d=>d.letter);
+
+    
+
+    Plot.barX(alphabet, {x: "frequency", y: "letter"}).plot();
+    
+
+
+
+    </script>
+    
+</body>
+</html>

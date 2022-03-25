@@ -6,17 +6,35 @@
     text-align: justify;
     box-sizing: border-box;
 }
+
+.language-link{
+	text-align:right;
+	padding-top: 15px;
+	padding-right: 15px;
+}
+.language-link-item {
+	text-decoration:none;
+	color: #232323;
+}
+
 .blocmenu{
     display: inline-block;
     width: 200px;
 }
-#currentpage{
-    background: #777;
+#currentPageId {
+    text-decoration: rgb(221, 162, 0); 
+    color: #fa3939;
+    
+}
+
+nav{
+    display: inline-block;
+    width: 200px;
 }
 
 nav li {
     margin-top: 10px;
-    background-color: #0AD; /*Bleu*/
+    background-color: rgb(154, 216, 235); /*Bleu*/
     padding: 15px;
 }
 
@@ -33,7 +51,7 @@ nav li {
 
 
 body{
-    background: #4174e2;
+    background:whitesmoke;
 }
 p{
     font-size: 1em;
@@ -50,7 +68,8 @@ a{
     display: flex; 
     flex-flow: row wrap;
     justify-content: left;
-    width: 100%;
+    flex-direction: row;
+    width: 200px;
     padding-bottom: 20px;
     margin: 20px auto;
     box-shadow: 0px 0px 10px #bbb;
@@ -59,14 +78,16 @@ a{
 
 /*HEADER & FOOTER*/
 header, footer{
+    display: flex;
     width: 100%;
     padding: 20px 0px;
-   background-color: #777;
-    box-shadow: 0px 0px 15px #333;
+    justify-content: center;
+    background-color: blue;
+    box-shadow: 0px 0px 15px rgb(214, 117, 117);
 }
 header{
     border-bottom: 2px solid #fff;
-    height: 120px;
+    
 }
 header h1{
     color: white;

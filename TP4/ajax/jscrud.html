@@ -67,27 +67,7 @@
 <script>
 
 
-
-let students = [
-    {
-        id: 1,
-        nom: "Nicolas",
-        prenom: "ni",
-        aimeCours: "oui",
-        dateNaissance:"12/07/1990",
-        remarques:"waii"
-    },
-    {
-        id: 2,
-        nom: "bernard",
-        prenom: "le",
-        aimeCours: "non",
-        dateNaissance:"12/07/1998",
-        remarques:"qkjhf"
-    }
-    ]
-
-    display();
+display();
 function onFormSubmit() {
     // prevent the form to be sent to the server
     event.preventDefault();
@@ -102,17 +82,7 @@ function onFormSubmit() {
          check = "oui";
     } else {
         check = "non";
-    }
-
-    let student = {
-        nom: nom,
-        prenom: prenom,
-        aimeCours: check,
-        dateNaissance: naissance,
-        remarques: Remarques
-    };
-    
-    
+    } 
    if(nom.length!=0){
        if(!edit){
         //students.push(student);
@@ -192,7 +162,7 @@ function editStudent(id) {
                         }, // get all form field value in 
                     success: function(res){
                     window.location.reload();
-                    display();
+                    //display();
                     }
                 });
                 editcourant = false;
@@ -226,6 +196,7 @@ function display(){
     $.get("testconnect.php",
         function(response){
             stude = JSON.parse(response)['utitilisateur'];
+            console.log(stude);
             $("#studentsTableBody tr").remove();
         stude.forEach(element =>
        $("#studentsTableBody").append(`<tr><td>${element["nom"]}</td><td>${element["prenom"]}</td><td>${element["dateNaissance"]}</td><td>${element["aimeCours"]}</td><td>${element["remarques"]}</td><td><button onclick="editStudent(${element["id"]})">Edit</button></td><td><button onclick="supprimer(${element["id"]})">Delete</button></td></tr>`));
